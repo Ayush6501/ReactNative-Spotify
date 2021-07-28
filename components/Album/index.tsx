@@ -6,7 +6,7 @@ import {
     View,
     Text,
     Image,
-    TouchableOpacity
+    TouchableWithoutFeedback
 } from "react-native";
 import {Album} from "../../types";
 import {useNavigation} from "@react-navigation/native";
@@ -23,12 +23,12 @@ const AlbumComponent = (props: AlbumProps) => {
     }
 
     return (
-        <TouchableOpacity onPress={pressHandler}>
+        <TouchableWithoutFeedback onPress={pressHandler}>
             <View style={styles.container}>
                 <Image source={{ uri: props.album.imageUri }} style={styles.image} />
                 <Text style={styles.text}>{props.album.artistsHeadline}</Text>
             </View>
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
     );
 }
 

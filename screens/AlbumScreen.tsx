@@ -1,8 +1,9 @@
-import {View, Text} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import React, {useEffect} from 'react';
 import {useRoute} from "@react-navigation/native";
 import albumDetails from "../data/albumDetails";
 import SongListItem from "../components/SongListItem";
+import AlbumHeader from "../components/AlbumHeader";
 
 const AlbumScreen = () => {
     const route = useRoute();
@@ -13,12 +14,14 @@ const AlbumScreen = () => {
 
     return (
         <View>
-            <Text style={{ color: 'white'}}>
-                Album Screen
-            </Text>
-            <SongListItem song={albumDetails.songs[0]} />
+            <FlatList
+                data={albumDetails.songs}
+                renderItem={({item}) => <SongListItem song={item}/> }
+                keyExtractor={item => item.id}
+                ListHeaderComponent={() => <AlbumHeader album={albumDetails}/>}
+            />
         </View>
     );
-};
+}
 
 export default AlbumScreen;
